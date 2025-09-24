@@ -37,32 +37,43 @@
     </div>
     <script src="./caret.js"></script>
     <script src="./main.js"></script>
+    
+   <script>
+    const originalTitle = document.title;
+    const originalFavicon = document.querySelector("link[rel='icon']").getAttribute("href");
 
-    <!-- Dynamic tab title (Terminal style) -->
-        <!-- Dynamic tab title (Terminal style + fun messages) -->
-    <script>
-      const originalTitle = document.title;
-      let blinkInterval;
-
-      const messages = [
-        "📢 Come back to my portfolio!",
-        "🚀 Don’t miss the fun!",
-        "💻 ArshCodes Terminal awaits..."
-      ];
-
-      window.addEventListener("blur", () => {
-        let i = 0;
-        blinkInterval = setInterval(() => {
-          document.title = messages[i % messages.length];
-          i++;
-        }, 1200); // cycle speed
-      });
-
-      window.addEventListener("focus", () => {
-        clearInterval(blinkInterval);
-        document.title = originalTitle;
-      });
-    </script>
+    const messages = [
+      { text: "Come back to my portfolio!", emoji: "👋" },
+      { text: "Don’t miss the fun!", emoji: "✨" },
+      { text: "ArshCodes Terminal awaits...", emoji: "💻" }
+    ];
+  
+    let blinkInterval;
+  
+    function setFavicon(emoji) {
+      const favicon = document.querySelector("link[rel='icon']");
+      favicon.setAttribute(
+        "href",
+        `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`
+      );
+    }
+  
+    window.addEventListener("blur", () => {
+      let i = 0;
+      blinkInterval = setInterval(() => {
+        document.title = messages[i % messages.length].text;
+        setFavicon(messages[i % messages.length].emoji);
+        i++;
+      }, 1500);
+    });
+  
+    window.addEventListener("focus", () => {
+      clearInterval(blinkInterval);
+      document.title = originalTitle;
+      document.querySelector("link[rel='icon']").setAttribute("href", originalFavicon);
+    });
+  </script>
   </body>
 </html>
+
 
