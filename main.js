@@ -18,9 +18,10 @@ setTimeout(function () {
 
 window.addEventListener("keyup", enterKey);
 
-let originalTitle = document.title;
-let blinkInterval;
+// let originalTitle = document.title;
+// let blinkInterval;
 
+/*
 window.addEventListener("blur", () => {
   let messages = [
     "👋 Come back to my portfolio!",
@@ -38,6 +39,7 @@ window.addEventListener("focus", () => {
   clearInterval(blinkInterval);
   document.title = originalTitle;
 });
+*/
 
 textarea.value = "";
 command.innerHTML = textarea.value;
@@ -331,4 +333,5 @@ function activateKonamiEasterEgg() {
   addLine("- Mikhail Tal", "color4", 2100);
   addLine("", "color2", 2200);
 }
+
 
