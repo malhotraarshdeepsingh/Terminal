@@ -18,7 +18,27 @@ setTimeout(function () {
 
 window.addEventListener("keyup", enterKey);
 
-//init
+let originalTitle = document.title;
+let blinkInterval;
+
+window.addEventListener("blur", () => {
+  let messages = [
+    "👋 Come back to my portfolio!",
+    "✨ Don't miss the fun!",
+    "💻 ArshCodes Terminal awaits..."
+  ];
+  let i = 0;
+  blinkInterval = setInterval(() => {
+    document.title = messages[i % messages.length];
+    i++;
+  }, 1500);
+});
+
+window.addEventListener("focus", () => {
+  clearInterval(blinkInterval);
+  document.title = originalTitle;
+});
+
 textarea.value = "";
 command.innerHTML = textarea.value;
 
@@ -311,3 +331,4 @@ function activateKonamiEasterEgg() {
   addLine("- Mikhail Tal", "color4", 2100);
   addLine("", "color2", 2200);
 }
+
