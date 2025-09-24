@@ -39,18 +39,23 @@
     <script src="./main.js"></script>
 
     <!-- Dynamic tab title (Terminal style) -->
+        <!-- Dynamic tab title (Terminal style + fun messages) -->
     <script>
       const originalTitle = document.title;
       let blinkInterval;
 
+      const messages = [
+        "📢 Come back to my portfolio!",
+        "🚀 Don’t miss the fun!",
+        "💻 ArshCodes Terminal awaits..."
+      ];
+
       window.addEventListener("blur", () => {
-        let toggle = false;
+        let i = 0;
         blinkInterval = setInterval(() => {
-          document.title = toggle 
-            ? "user@ASM:~$ █"   // feels like real prompt
-            : "Come back to ASM Terminal"; 
-          toggle = !toggle;
-        }, 800); // faster, feels like cursor blink
+          document.title = messages[i % messages.length];
+          i++;
+        }, 1200); // cycle speed
       });
 
       window.addEventListener("focus", () => {
@@ -60,3 +65,4 @@
     </script>
   </body>
 </html>
+
